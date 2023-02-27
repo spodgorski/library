@@ -1,6 +1,5 @@
 package com.kata.library.book
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
@@ -53,7 +52,7 @@ class BookBorrowControllerIT {
 
         val books = hashMapDatabaseRepository.findAllBooks()
         assertNotNull(books)
-        Assertions.assertThat(books).hasSize(1)
+        assertThat(books).hasSize(1)
         assertEquals(DEFAULT_TITLE, books[0].title)
         assertEquals(DEFAULT_AUTHOR, books[0].author)
         assertEquals(userId, books[0].userId)
@@ -192,8 +191,6 @@ class BookBorrowControllerIT {
         assertThat(hashMapDatabaseRepository.findAllBooks()).hasSize(1)
         assertEquals(hashMapDatabaseRepository.findAllBooks()[0].userId, "otherUser")
     }
-
-
 
     companion object {
         const val DEFAULT_TITLE = "title"
