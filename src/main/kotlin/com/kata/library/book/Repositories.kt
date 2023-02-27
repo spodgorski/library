@@ -1,6 +1,5 @@
 package com.kata.library.book
 
-import com.kata.library.book.BookDatabaseRepository.Companion.DATABASE
 import org.springframework.stereotype.Component
 
 interface BookDatabaseRepository {
@@ -10,10 +9,6 @@ interface BookDatabaseRepository {
     fun borrowBook(userId: String, bookId: String): BookEntity
     fun getAllBorrowed(userId: String): List<BookEntity>
     fun returnBook(userId: String, bookId: String): BookEntity
-
-    companion object {
-        val DATABASE = mutableMapOf<String, BookEntity>()
-    }
 }
 
 @Component
@@ -36,5 +31,9 @@ class HashMapDatabaseRepository : BookDatabaseRepository {
 
     override fun getAllBorrowed(userId: String): List<BookEntity> {
         return DATABASE.values.filter { it.userId == userId }
+    }
+
+    companion object {
+        val DATABASE = mutableMapOf<String, BookEntity>()
     }
 }
